@@ -11,6 +11,7 @@ cd GP2040-CE
 mkdir build
 cd build
 cmake ..
+ninja
 ```
 
 And flash the resulting uf2 to your RP2040 board.
