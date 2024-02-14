@@ -75,11 +75,11 @@ extern "C" void attachInterrupt(pin_size_t pin, voidFuncPtr callback, PinStatus 
 
     uint32_t events;
     switch (mode) {
-    case LOW:     events = 1; break;
-    case HIGH:    events = 2; break;
-    case FALLING: events = 4; break;
-    case RISING:  events = 8; break;
-    case CHANGE:  events = 4 | 8; break;
+    case RPLOW:     events = 1; break;
+    case RPHIGH:    events = 2; break;
+    case RPFALLING: events = 4; break;
+    case RPRISING:  events = 8; break;
+    case RPCHANGE:  events = 4 | 8; break;
     default:      return;  // ERROR
     }
     noInterrupts();

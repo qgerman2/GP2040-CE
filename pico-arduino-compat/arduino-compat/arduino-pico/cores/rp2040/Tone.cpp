@@ -123,6 +123,6 @@ void noTone(uint8_t pin) {
         delete entry->second;
         _toneMap.erase(entry);
         pinMode(pin, OUTPUT);
-        digitalWrite(pin, LOW);
+        digitalWrite(pin, RPLOW);
     }
 }

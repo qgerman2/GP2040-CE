@@ -33,13 +33,13 @@ extern "C" uint8_t shiftIn(pin_size_t dataPin, pin_size_t clockPin, BitOrder bit
         return 0;
     }
     for (i = 0; i < 8; ++i) {
-        digitalWrite(clockPin, HIGH);
+        digitalWrite(clockPin, RPHIGH);
         if (bitOrder == LSBFIRST) {
             value |= digitalRead(dataPin) << i;
         } else {
             value |= digitalRead(dataPin) << (7 - i);
         }
-        digitalWrite(clockPin, LOW);
+        digitalWrite(clockPin, RPLOW);
     }
     return value;
 }
@@ -61,7 +61,7 @@ extern "C" void shiftOut(pin_size_t dataPin, pin_size_t clockPin, BitOrder bitOr
             digitalWrite(dataPin, !!(val & (1 << (7 - i))));
         }
 
-        digitalWrite(clockPin, HIGH);
-        digitalWrite(clockPin, LOW);
+        digitalWrite(clockPin, RPHIGH);
+        digitalWrite(clockPin, RPLOW);
     }
 }

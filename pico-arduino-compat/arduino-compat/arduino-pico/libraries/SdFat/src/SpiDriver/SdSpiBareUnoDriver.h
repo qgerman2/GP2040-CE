@@ -33,10 +33,10 @@
 #include "../common/SysCall.h"
 #define nop asm volatile ("nop\n\t")
 #ifndef HIGH
-#define HIGH 1
+#define SPI_HIGH 1
 #endif  // HIGH
 #ifndef LOW
-#define LOW 0
+#define SPI_LOW 0
 #endif  // LOW
 #ifndef INPUT
 #define INPUT 0

@@ -121,8 +121,8 @@ auto_init_mutex(_adcMutex);
 extern "C" int analogRead(pin_size_t pin) {
     CoreMutex m(&_adcMutex);
 
-    pin_size_t maxPin = max(A0, A3);
-    pin_size_t minPin = min(A0, A3);
+    pin_size_t maxPin = max(RPA0, RPA3);
+    pin_size_t minPin = min(RPA0, RPA3);
 
     if ((pin < minPin) || (pin > maxPin) || !m) {
         DEBUGCORE("ERROR: Illegal analogRead pin (%d)\n", pin);

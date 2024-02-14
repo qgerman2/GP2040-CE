@@ -230,47 +230,47 @@ bool _probe(int addr, pin_size_t sda, pin_size_t scl, int freq) {
     gpio_set_function(scl, GPIO_FUNC_SIO);
     gpio_set_function(sda, GPIO_FUNC_SIO);
 
-    digitalWrite(sda, HIGH);
+    digitalWrite(sda, RPHIGH);
     sleep_us(delay);
-    digitalWrite(scl, HIGH);
+    digitalWrite(scl, RPHIGH);
     if (!_clockStretch(scl)) {
         goto stop;
     }
-    digitalWrite(sda, LOW);
+    digitalWrite(sda, RPLOW);
     sleep_us(delay);
-    digitalWrite(scl, LOW);
+    digitalWrite(scl, RPLOW);
     sleep_us(delay);
     for (int i = 0; i < 8; i++) {
         addr <<= 1;
-        digitalWrite(sda, (addr & (1 << 7)) ? HIGH : LOW);
+        digitalWrite(sda, (addr & (1 << 7)) ? RPHIGH : RPLOW);
         sleep_us(delay);
-        digitalWrite(scl, HIGH);
+        digitalWrite(scl, RPHIGH);
         sleep_us(delay);
         if (!_clockStretch(scl)) {
             goto stop;
         }
-        digitalWrite(scl, LOW);
+        digitalWrite(scl, RPLOW);
         sleep_us(5); // Ensure we don't change too close to clock edge
     }
 
-    digitalWrite(sda, HIGH);
+    digitalWrite(sda, RPHIGH);
     sleep_us(delay);
-    digitalWrite(scl, HIGH);
+    digitalWrite(scl, RPHIGH);
     if (!_clockStretch(scl)) {
         goto stop;
     }
 
-    ack = digitalRead(sda) == LOW;
+    ack = digitalRead(sda) == RPLOW;
     sleep_us(delay);
-    digitalWrite(scl, LOW);
+    digitalWrite(scl, RPLOW);
 
 stop:
     sleep_us(delay);
-    digitalWrite(sda, LOW);
+    digitalWrite(sda, RPLOW);
     sleep_us(delay);
-    digitalWrite(scl, HIGH);
+    digitalWrite(scl, RPHIGH);
     sleep_us(delay);
-    digitalWrite(sda, HIGH);
+    digitalWrite(sda, RPHIGH);
     sleep_us(delay);
     gpio_set_function(scl, GPIO_FUNC_I2C);
     gpio_set_function(sda, GPIO_FUNC_I2C);

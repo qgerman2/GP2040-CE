@@ -8,11 +8,11 @@ extern "C"{
 void yield(void);
 
 typedef enum {
-  LOW     = 0,
-  HIGH    = 1,
-  CHANGE  = 2,
-  FALLING = 3,
-  RISING  = 4,
+  RPLOW     = 0,
+  RPHIGH    = 1,
+  RPCHANGE  = 2,
+  RPFALLING = 3,
+  RPRISING  = 4,
 } PinStatus;
 
 typedef enum {
@@ -150,7 +150,7 @@ void loop(void);
 
 /* C++ prototypes */
 uint16_t makeWord(uint16_t w);
-uint16_t makeWord(byte h, byte l);
+//uint16_t makeWord(byte h, byte l);
 
 #define word(...) makeWord(__VA_ARGS__)
 

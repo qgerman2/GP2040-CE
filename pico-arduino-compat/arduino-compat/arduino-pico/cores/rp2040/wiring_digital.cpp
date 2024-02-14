@@ -65,26 +65,26 @@ extern "C" void digitalWrite(pin_size_t ulPin, PinStatus ulVal) {
     }
     gpio_set_function(ulPin, GPIO_FUNC_SIO);
     if (_pm[ulPin] == INPUT_PULLDOWN) {
-        if (ulVal == LOW) {
+        if (ulVal == RPLOW) {
             gpio_set_dir(ulPin, false);
         } else {
             gpio_set_dir(ulPin, true);
         }
     } else if (_pm[ulPin] == INPUT_PULLUP) {
-        if (ulVal == HIGH) {
+        if (ulVal == RPHIGH) {
             gpio_set_dir(ulPin, false);
         } else {
             gpio_set_dir(ulPin, true);
         }
     } else {
-        gpio_put(ulPin, ulVal == LOW ? 0 : 1);
+        gpio_put(ulPin, ulVal == RPLOW ? 0 : 1);
     }
 }
 
 extern "C" PinStatus digitalRead(pin_size_t ulPin) {
     if (ulPin > 29) {
         DEBUGCORE("ERROR: Illegal pin in digitalRead (%d)\n", ulPin);
-        return LOW;
+        return RPLOW;
     }
-    return gpio_get(ulPin) ? HIGH : LOW;
+    return gpio_get(ulPin) ? RPHIGH : RPLOW;
 }
