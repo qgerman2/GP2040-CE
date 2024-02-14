@@ -127,6 +127,7 @@ add_compile_options(-fdata-sections -ffunction-sections)
 add_link_options(-Wl,--gc-sections)
 
 add_subdirectory(lib)
+add_subdirectory(pico-arduino-compat/libs/usb-host-shield-library-2.0)
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
   # Activate some compiler / linker options to aid us with diagnosing stack space issues in Debug builds
@@ -200,6 +201,7 @@ src/addons/snes_input.cpp
 src/addons/inputhistory.cpp
 src/addons/tilt.cpp
 src/addons/xbonepassthrough.cpp
+src/addons/usbhostshield.cpp
 ${PROTO_OUTPUT_DIR}/enums.pb.c
 ${PROTO_OUTPUT_DIR}/config.pb.c
 )
@@ -229,6 +231,7 @@ WiiExtension
 SNESpad
 pico_mbedtls
 nanopb
+pac-usb-host-shield-library-2.0
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC

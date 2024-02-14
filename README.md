@@ -1,3 +1,36 @@
+# GP2040-CE Fork with Arduino USB Host Shield 2.0
+
+This always seemed like an obvious application, GP2040 is compatible with a lot of consoles and the USB Host Shield library makes Arduino compatible with a lot of controllers. Combining the two gives the ability to use any controller with any console as long as both projects support them.
+
+## Instructions
+
+Build this the same way you would with the original GP2040-CE, with the Pico SDK do
+
+```
+cd GP2040-CE
+mkdir build
+cd build
+cmake ..
+```
+
+And flash the resulting uf2 to your RP2040 board.
+
+## Programming your own controller
+
+The controller specific code is in the files `headers/addons/usbhostshield.h` and `src/addons/usbhostshield.cpp`
+
+Right now it has code for the Xbox 360 usb receiver, but it should be a good enough help to program in something else based on the examples.
+
+(The PS3 code has been commented out from the `CMakeLists.txt` because it failed to compile, but can hopefully be fixed easily enough)
+
+### Porting USB Host Shield to Pico-SDK
+
+Thanks to the instructions on this repo https://github.com/kholia/pico-arduino-compat/ the USB Host Shield library wasn't too hard to port, the specific version that has benn worked with is from xzhong86 that ported it to the RP2040, and that i updated a little so that it works with the latest Arduino-Pico library here https://github.com/qgerman2/USB_Host_Shield_2.0
+
+The files with the modified library are in the `pico-arduino-compat` directory.
+
+----------
+
 <p align="center">
   <a href="https://gp2040-ce.info">
     <img alt="GP2040-CE" src="https://raw.githubusercontent.com/OpenStickCommunity/Site/main/docs/assets/images/gp2040-ce-logo.png" />
